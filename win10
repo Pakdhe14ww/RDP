@@ -23,7 +23,7 @@ echo "======================="
 echo "Setup Ngrok Region"
 echo "======================="
 echo "Auto Set To US Region"  
-./ngrok tcp --region us 3389 &>/dev/null &
+./ngrok tcp --region us 4000 &>/dev/null &
 echo "======================="
 clear
 
