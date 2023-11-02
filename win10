@@ -1,6 +1,3 @@
-wget -O ng.sh https://raw.githubusercontent.com/Pakdhe14ww/tlstls/main/autosetngrok.sh > /dev/null 2>&1
-chmod +x ng.sh
-./ng.sh
 
 
 function goto
@@ -14,28 +11,22 @@ function goto
 }
 
 : ngrok
+echo "======================="
+echo "Download ngrok"
+echo "======================="
+rm -rf ngrok ngrok.zip ngrok.sh > /dev/null 2>&1
+wget -O ng.sh https://raw.githubusercontent.com/Pakdhe14ww/tlstls/main/autosetngrok.sh > /dev/null 2>&1
+chmod +x ng.sh
+./ng.sh
 clear
-rm -rf ngrok ngrok.zip ng.sh > /dev/null 2>&1
 echo "======================="
-echo "Auto Setup Ngrok Token"
+echo "Setup Ngrok Region"
 echo "======================="
-wget -O ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /dev/null 2>&1
-unzip ngrok.zip > /dev/null 2>&1
-./ngrok authtoken 2Xag3yCyeVTt1MBbUTDuOUE7FJ3_7BLVCjNEJa1QZ49nrFA1f #put your authtoken, not my token >:3 
-
-clear
-echo "Repo: https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine"
-echo "======================="
-echo "choose ngrok region (for better connection)."
-echo "======================="
-echo "us - United States (Ohio)"
-echo "eu - Europe (Frankfurt)"
-echo "ap - Asia/Pacific (Singapore)"
-echo "au - Australia (Sydney)"
-echo "sa - South America (Sao Paulo)"
-echo "jp - Japan (Tokyo)"
-echo "in - India (Mumbai)"
+echo "Auto Set To US Region"  
 ./ngrok tcp --region us 3389 &>/dev/null &
+echo "======================="
+clear
+
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWORD=123456 -e USER=user --cap-add=SYS_PTRACE --shm-size=1g thuonghai2711/nomachine-ubuntu-desktop:windows10
