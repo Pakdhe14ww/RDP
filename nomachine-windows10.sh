@@ -21,7 +21,7 @@ echo "Auto Setup Ngrok Token"
 echo "======================="
 wget -O ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /dev/null 2>&1
 unzip ngrok.zip > /dev/null 2>&1
-./ngrok authtoken 2XcNvJU95utQbxIJhacTrbqPmPo_3jycKpVEg2tvhKvwpCRo9 #put your authtoken, not my token >:3 
+./ngrok authtoken 2Xag3yCyeVTt1MBbUTDuOUE7FJ3_7BLVCjNEJa1QZ49nrFA1f 
 
 clear
 echo "Repo: https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine"
@@ -35,7 +35,7 @@ echo "au - Australia (Sydney)"
 echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
-./ngrok tcp us --region $us 4000 &>/dev/null &
+./ngrok tcp --region us 4000 &>/dev/null &
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWORD=123456 -e USER=user --cap-add=SYS_PTRACE --shm-size=1g thuonghai2711/nomachine-ubuntu-desktop:windows10
